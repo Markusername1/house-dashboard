@@ -1,0 +1,1071 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0b1220">
+<title>Home</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ------------------------------------------------------------------ *
+   A window with an instrument over it.
+
+   The background is the real sky, interpolated from today's actual
+   sunrise and sunset. Everything else is a panel of smoked glass laid
+   on top: hairlines, tabular numerals, no decoration. The panel's
+   opacity is computed at runtime from the sky's luminance so body text
+   never drops below 4.5:1, whatever hour it is.
+ * ------------------------------------------------------------------ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  --ink:    #edf1f6;
+  --ink-2:  rgba(237, 241, 246, .80);
+  --ink-3:  rgba(237, 241, 246, .66);
+  --rule:   rgba(237, 241, 246, .13);
+  --rule-2: rgba(237, 241, 246, .24);
+
+  /* The only saturated colours on the page. Real ACT bin lids. */
+  --lid-red:    #c4382e;
+  --lid-yellow: #eec32e;
+  --lid-green:  #2f7a45;
+  --amber:      #efb254;
+
+  /* Set by script from the current sky. */
+  --panel: rgba(7, 11, 18, .62);
+
+  --ease: cubic-bezier(.2, 0, 0, 1);
+  --t: 160ms;
+  --sans: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, "Cascadia Mono", Consolas, monospace;
+}
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--ink);
+  background: #0b1220;
+  padding: max(1.25rem, env(safe-area-inset-top)) max(.75rem, env(safe-area-inset-right))
+            max(1.25rem, env(safe-area-inset-bottom)) max(.75rem, env(safe-area-inset-left));
+}
+
+/* The sky. Two layers cross-fade so the gradient can change without a
+   repaint seam; the script swaps which one is on top. */
+.sky {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background: linear-gradient(180deg, #0b1220 0%, #101a2e 55%, #16203a 100%);
+  transition: opacity 1400ms linear;
+}
+.sky--b { opacity: 0; }
+
+/* A light, constant veil. Not for contrast — the panel does that — just
+   to keep the midday palette from reading as a screensaver. */
+.veil {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(120% 80% at 50% 0%, rgba(0,0,0,0) 40%, rgba(4,7,12,.34) 100%),
+    linear-gradient(180deg, rgba(4,7,12,.10) 0%, rgba(4,7,12,.24) 100%);
+}
+
+/* ---- the instrument ------------------------------------------------ */
+
+.panel {
+  max-width: 44rem;
+  margin: 0 auto;
+  background: var(--panel);
+  -webkit-backdrop-filter: blur(16px) saturate(115%);
+  backdrop-filter: blur(16px) saturate(115%);
+  border: 1px solid var(--rule);
+  transition: background var(--t) var(--ease);
+}
+
+/* Regions are separated by hairlines, not stacked as boxes. */
+.region { padding: 1.15rem 1.15rem 1.3rem; }
+.region + .region,
+.split > * + * { border-top: 1px solid var(--rule); }
+
+@media (min-width: 44rem) {
+  .region { padding: 1.4rem 1.6rem 1.6rem; }
+  .split { display: grid; grid-template-columns: 1fr 1fr; }
+  .split > * + * { border-top: 0; border-left: 1px solid var(--rule); }
+}
+
+/* A stale region declares itself at the edge as well as in its age chip. */
+.region.is-stale { box-shadow: inset 3px 0 0 -1px var(--amber); }
+
+/* ---- region headers ------------------------------------------------ */
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  margin-bottom: .85rem;
+}
+.head h2 {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: .6875rem;
+  font-weight: 500;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+.head .fill { flex: 1 1 auto; height: 1px; background: var(--rule); }
+
+/* Provenance is a feature here, not fine print: every region says how old
+   it is, and turns amber the moment it stops being current. */
+.age {
+  font-family: var(--mono);
+  font-size: .6875rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-3);
+  white-space: nowrap;
+  transition: color var(--t) var(--ease);
+}
+.age.is-stale { color: var(--amber); }
+
+/* ---- readouts ------------------------------------------------------ */
+
+.readout {
+  font-size: clamp(2.75rem, 13vw, 3.9rem);
+  font-weight: 600;
+  line-height: .88;
+  letter-spacing: -.035em;
+  font-variant-numeric: tabular-nums;
+  display: flex;
+  align-items: baseline;
+  gap: .12em;
+}
+.readout .unit {
+  font-size: .3em;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--ink-2);
+}
+.sub {
+  margin: .55rem 0 0;
+  font-size: .875rem;
+  color: var(--ink-2);
+}
+.sub strong { color: var(--ink); font-weight: 500; }
+
+/* Small aligned fact pairs. Mono on the values only — they are data. */
+.facts {
+  margin: .9rem 0 0;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: .3rem .9rem;
+  font-size: .8125rem;
+}
+.facts dt { color: var(--ink-3); }
+.facts dd {
+  margin: 0;
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-2);
+  text-align: right;
+}
+
+/* ---- masthead ------------------------------------------------------ */
+
+.masthead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .95rem 1.15rem;
+  border-bottom: 1px solid var(--rule-2);
+}
+@media (min-width: 44rem) { .masthead { padding: 1rem 1.6rem; } }
+.masthead h1 {
+  margin: 0;
+  font-size: .9375rem;
+  font-weight: 600;
+  letter-spacing: -.01em;
+}
+.masthead .place {
+  font-family: var(--mono);
+  font-size: .6875rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.masthead .stamp {
+  font-family: var(--mono);
+  font-size: .75rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-2);
+  text-align: right;
+}
+
+/* ---- bin hero ------------------------------------------------------ */
+/* The bins are the only thing on this page a person actually forgets, so
+   they get the loudest treatment on the one night it matters and a single
+   quiet line every other night. */
+
+.hero { padding: 1.15rem; }
+@media (min-width: 44rem) { .hero { padding: 1.4rem 1.6rem 1.6rem; } }
+
+.hero .call {
+  margin: 0;
+  font-size: clamp(1.5rem, 7.5vw, 2.35rem);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -.03em;
+}
+.hero .when {
+  margin: .5rem 0 0;
+  font-family: var(--mono);
+  font-size: .8125rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-2);
+}
+
+/* Lid colours take over only on bin night. */
+.lids {
+  display: grid;
+  gap: 2px;
+  margin-top: 1rem;
+}
+@media (min-width: 30rem) { .lids { grid-auto-flow: column; grid-auto-columns: 1fr; } }
+
+.lid {
+  padding: .8rem .9rem 1rem;
+  min-height: 4.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: .3rem;
+}
+.lid .name { font-size: 1.0625rem; font-weight: 600; letter-spacing: -.015em; }
+.lid .meta {
+  font-family: var(--mono);
+  font-size: .6875rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  opacity: .82;
+}
+.lid--red    { background: var(--lid-red);    color: #fff; }
+.lid--green  { background: var(--lid-green);  color: #fff; }
+.lid--yellow { background: var(--lid-yellow); color: #241c02; }
+
+/* Every other night. */
+.hero--quiet .call { font-size: 1.0625rem; font-weight: 500; letter-spacing: -.01em; }
+
+/* ---- hourly strip -------------------------------------------------- */
+
+.hours {
+  margin: 1rem -.15rem 0;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  align-items: end;
+  gap: 2px;
+  height: 3.2rem;
+}
+.hours .h { display: flex; flex-direction: column; justify-content: flex-end; gap: .3rem; height: 100%; }
+.hours .bar {
+  background: var(--rule-2);
+  border-top: 1px solid var(--ink-3);
+  min-height: 2px;
+  transition: height var(--t) var(--ease);
+}
+.hours .t {
+  font-family: var(--mono);
+  font-size: .5625rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-3);
+  text-align: center;
+}
+
+/* Quiet-night bin line: colour is reduced to a marker, not a statement. */
+.dots { display: inline-flex; gap: 4px; margin-right: .5rem; vertical-align: baseline; }
+.dot { width: 9px; height: 9px; display: block; }
+.dot--red { background: var(--lid-red); }
+.dot--yellow { background: var(--lid-yellow); }
+.dot--green { background: var(--lid-green); }
+
+/* ---- failure states ------------------------------------------------ */
+/* Failure is a visible state, never a blank and never a spinner that
+   does not resolve. */
+
+.note {
+  margin: .8rem 0 0;
+  padding: .5rem .65rem;
+  border-left: 2px solid var(--amber);
+  background: rgba(239, 178, 84, .07);
+  font-size: .8125rem;
+  color: var(--ink-2);
+}
+.note.is-dead { border-left-color: var(--ink-3); background: rgba(237, 241, 246, .05); }
+.note code {
+  font-family: var(--mono);
+  font-size: .95em;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.missing {
+  font-size: .9375rem;
+  color: var(--ink-2);
+}
+
+/* ---- fire ---------------------------------------------------------- */
+
+.ban {
+  display: inline-block;
+  padding: .3rem .55rem;
+  background: var(--lid-red);
+  color: #fff;
+  font-family: var(--mono);
+  font-size: .75rem;
+  font-weight: 500;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.incidents { margin: .85rem 0 0; padding: 0; list-style: none; }
+.incidents li {
+  padding: .5rem 0;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  gap: .75rem;
+  align-items: baseline;
+  font-size: .8125rem;
+}
+.incidents .what { flex: 1 1 auto; color: var(--ink-2); }
+.incidents .dist {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+/* ---- footer -------------------------------------------------------- */
+
+.foot {
+  padding: .9rem 1.15rem 1rem;
+  border-top: 1px solid var(--rule-2);
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem .9rem;
+  font-family: var(--mono);
+  font-size: .6875rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-3);
+}
+@media (min-width: 44rem) { .foot { padding: .9rem 1.6rem 1rem; } }
+.foot .ok::before   { content: "\00b7 "; }
+.foot .bad { color: var(--amber); }
+
+/* ---- accessible floor ---------------------------------------------- */
+
+a { color: inherit; }
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.sr {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition: none !important;
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+  .sky { transition: none !important; }
+}
+</style>
+</head>
+<body>
+<div class="sky sky--a" id="skyA" aria-hidden="true"></div>
+<div class="sky sky--b" id="skyB" aria-hidden="true"></div>
+<div class="veil" aria-hidden="true"></div>
+
+<main class="panel" id="panel">
+  <header class="masthead">
+    <div>
+      <h1 id="houseName">Home</h1>
+      <div class="place" id="place">Canberra</div>
+    </div>
+    <div class="stamp" id="stamp"></div>
+  </header>
+  <div id="content">
+    <div class="region"><p class="missing" id="boot">Loading today&rsquo;s data&hellip;</p></div>
+  </div>
+  <footer class="foot" id="foot"></footer>
+</main>
+
+<script>
+'use strict';
+
+/* ==SKY-START== ------------------------------------------------------
+   The sky is interpolated from the sun's real position, using today's
+   actual sunrise and sunset out of the weather data. These are pure
+   functions with no DOM in them so tools/check.mjs can pull this block
+   out and assert the contrast floor at every hour of the year.
+ * ------------------------------------------------------------------ */
+
+/* Text is light, so the panel behind it has to stay dark enough that
+   --ink-3 (the faintest thing on the page) still clears 4.5:1. Solving
+   that inequality gives a ceiling on the composited panel luminance. */
+var PANEL_BASE = [7, 11, 18];
+var PANEL_MAX_L = 0.055;
+
+var NIGHT = ['#070c17', '#0b1120', '#111a2e'];
+
+function hexToRgb(h) {
+  var n = parseInt(h.slice(1), 16);
+  return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+}
+function rgbToCss(c) {
+  return 'rgb(' + Math.round(c[0]) + ',' + Math.round(c[1]) + ',' + Math.round(c[2]) + ')';
+}
+function toLinear(v) {
+  v /= 255;
+  return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+}
+function toSrgb(v) {
+  v = v <= 0.0031308 ? v * 12.92 : 1.055 * Math.pow(v, 1 / 2.4) - 0.055;
+  return Math.max(0, Math.min(255, v * 255));
+}
+/** WCAG relative luminance of an 8-bit sRGB triplet. */
+function luminance(c) {
+  return 0.2126 * toLinear(c[0]) + 0.7152 * toLinear(c[1]) + 0.0722 * toLinear(c[2]);
+}
+/** Mix in linear light, so dawn does not go muddy through the midpoint. */
+function mix(a, b, t) {
+  var out = [];
+  for (var i = 0; i < 3; i++) out.push(toSrgb(toLinear(a[i]) * (1 - t) + toLinear(b[i]) * t));
+  return out;
+}
+/** Normal alpha compositing, the way the browser will actually do it. */
+function over(fg, bg, alpha) {
+  var out = [];
+  for (var i = 0; i < 3; i++) out.push(fg[i] * alpha + bg[i] * (1 - alpha));
+  return out;
+}
+
+/**
+ * Keyframes in minutes past local midnight, anchored to the real sunrise
+ * and sunset rather than to clock hours, so the page tracks the season.
+ */
+function keyframes(sunrise, sunset) {
+  var noon = (sunrise + sunset) / 2;
+  return [
+    { m: 0, s: NIGHT },
+    { m: sunrise - 75, s: ['#0a1120', '#141d31', '#232a41'] },
+    { m: sunrise - 35, s: ['#121d33', '#28344c', '#524d68'] },
+    { m: sunrise - 10, s: ['#1a2b4a', '#454a6d', '#8e6a78'] },
+    { m: sunrise, s: ['#274070', '#66668e', '#c9856f'] },
+    { m: sunrise + 45, s: ['#38649c', '#7895bc', '#d5a88b'] },
+    { m: sunrise + 150, s: ['#3a78b8', '#74a4d2', '#b4cbe2'] },
+    { m: noon, s: ['#377ec8', '#6aa2da', '#a5c6e6'] },
+    { m: sunset - 150, s: ['#3a78b8', '#76a3d0', '#bfccda'] },
+    { m: sunset - 45, s: ['#3a6aa4', '#8a8bab', '#dc9e6f'] },
+    { m: sunset, s: ['#28467a', '#69608c', '#c46d4d'] },
+    { m: sunset + 20, s: ['#192b52', '#3b3b5f', '#7a4752'] },
+    { m: sunset + 50, s: ['#0e182d', '#1a223c', '#37314c'] },
+    { m: 1440, s: NIGHT }
+  ].sort(function (a, b) { return a.m - b.m; });
+}
+
+/** The three gradient stops at `minutes` past local midnight. */
+function skyStops(minutes, sunrise, sunset) {
+  var ks = keyframes(sunrise, sunset);
+  var m = Math.max(0, Math.min(1440, minutes));
+  var i = 0;
+  while (i < ks.length - 2 && ks[i + 1].m <= m) i++;
+  var a = ks[i], b = ks[i + 1];
+  var span = b.m - a.m;
+  var t = span <= 0 ? 0 : Math.max(0, Math.min(1, (m - a.m) / span));
+  var out = [];
+  for (var j = 0; j < 3; j++) out.push(mix(hexToRgb(a.s[j]), hexToRgb(b.s[j]), t));
+  return out;
+}
+
+/**
+ * How opaque the panel has to be, right now, for text on it to stay
+ * legible. Bright sky pushes it up; at night it drops away and lets more
+ * of the real sky through. Solved against the brightest stop, since the
+ * panel spans all three.
+ */
+function panelAlpha(stops) {
+  var worst = stops[0];
+  for (var i = 1; i < stops.length; i++) if (luminance(stops[i]) > luminance(worst)) worst = stops[i];
+  if (luminance(over(PANEL_BASE, worst, 0)) <= PANEL_MAX_L) return 0;
+  var lo = 0, hi = 1;
+  for (var k = 0; k < 24; k++) {
+    var mid = (lo + hi) / 2;
+    if (luminance(over(PANEL_BASE, worst, mid)) > PANEL_MAX_L) lo = mid; else hi = mid;
+  }
+  return Math.min(1, hi + 0.01);
+}
+
+/** Everything the page needs to paint itself at a given minute. */
+function skyAt(minutes, sunrise, sunset) {
+  var stops = skyStops(minutes, sunrise, sunset);
+  var alpha = panelAlpha(stops);
+  return {
+    stops: stops,
+    alpha: alpha,
+    gradient: 'linear-gradient(180deg,' + rgbToCss(stops[0]) + ' 0%,' +
+      rgbToCss(stops[1]) + ' 52%,' + rgbToCss(stops[2]) + ' 100%)',
+    panel: 'rgba(' + PANEL_BASE.join(',') + ',' + alpha.toFixed(3) + ')'
+  };
+}
+/* ==SKY-END== */
+
+/* ------------------------------------------------------------------ *
+ * Time. The house is in one zone and the page may be opened from any,
+ * so every date decision goes through Intl with an explicit zone.
+ * ------------------------------------------------------------------ */
+
+var TZ = 'Australia/Sydney';
+var STALE_MS = 95 * 60 * 1000;   /* three missed 30-minute runs */
+
+function partsInTz(d) {
+  var f = new Intl.DateTimeFormat('en-GB', {
+    timeZone: TZ, hour12: false,
+    year: 'numeric', month: '2-digit', day: '2-digit',
+    hour: '2-digit', minute: '2-digit', weekday: 'long'
+  });
+  var p = {};
+  f.formatToParts(d).forEach(function (x) { p[x.type] = x.value; });
+  return {
+    ymd: p.year + '-' + p.month + '-' + p.day,
+    hour: Number(p.hour === '24' ? '0' : p.hour),
+    minute: Number(p.minute),
+    weekday: p.weekday
+  };
+}
+function todayYmd() { return partsInTz(new Date()).ymd; }
+function minutesNow() { var p = partsInTz(new Date()); return p.hour * 60 + p.minute; }
+
+function ymdToUTC(ymd) {
+  var a = ymd.split('-');
+  return Date.UTC(+a[0], +a[1] - 1, +a[2], 12, 0, 0);
+}
+function daysBetween(a, b) { return Math.round((ymdToUTC(b) - ymdToUTC(a)) / 86400000); }
+
+/** "2026-09-04" -> "Friday 4 Sep". */
+function longDate(ymd) {
+  return new Intl.DateTimeFormat('en-AU', {
+    timeZone: 'UTC', weekday: 'long', day: 'numeric', month: 'short'
+  }).format(new Date(ymdToUTC(ymd)));
+}
+/** Minutes past midnight from a local wall-clock ISO string. */
+function isoMinutes(s) {
+  var m = String(s || '').match(/T(\d{2}):(\d{2})/);
+  return m ? Number(m[1]) * 60 + Number(m[2]) : null;
+}
+function clockOf(iso) {
+  var m = String(iso || '').match(/T(\d{2}):(\d{2})/);
+  return m ? m[1] + ':' + m[2] : '--:--';
+}
+
+/** How old a section's data actually is, in the words an instrument uses. */
+function ageText(iso) {
+  var ms = Date.now() - Date.parse(iso);
+  if (!isFinite(ms)) return 'unknown age';
+  if (ms < 0) ms = 0;
+  var min = Math.floor(ms / 60000);
+  if (min < 1) return 'just now';
+  if (min < 90) return min + ' min';
+  var hr = Math.round(min / 60);
+  if (hr < 48) return hr + ' h';
+  return Math.round(hr / 24) + ' d';
+}
+
+/* ------------------------------------------------------------------ *
+ * DOM helpers. Everything is built as nodes rather than markup strings,
+ * so upstream free text can never be interpreted as HTML.
+ * ------------------------------------------------------------------ */
+
+function h(tag, attrs, kids) {
+  var n = document.createElement(tag);
+  if (attrs) Object.keys(attrs).forEach(function (k) {
+    if (attrs[k] == null) return;
+    if (k === 'class') n.className = attrs[k];
+    else if (k === 'text') n.textContent = attrs[k];
+    else n.setAttribute(k, attrs[k]);
+  });
+  (kids || []).forEach(function (c) { if (c) n.appendChild(c); });
+  return n;
+}
+function txt(tag, cls, s) { return h(tag, { class: cls, text: s }); }
+
+/** The header every region carries: name, hairline, and its true age. */
+function regionHead(title, sec) {
+  var stale = isStale(sec);
+  var age = h('span', {
+    class: 'age' + (stale ? ' is-stale' : ''),
+    text: sec ? ageText(sec.fetchedAt) : 'no data',
+    title: sec ? 'Data timestamped ' + sec.fetchedAt : ''
+  });
+  return h('div', { class: 'head' }, [
+    txt('h2', null, title),
+    h('div', { class: 'fill' }),
+    age
+  ]);
+}
+
+function isStale(sec) {
+  if (!sec) return true;
+  if (!sec.ok) return true;
+  return (Date.now() - Date.parse(sec.fetchedAt)) > STALE_MS;
+}
+
+/** Why a region is showing what it is showing. Never a silent failure. */
+function failNote(sec) {
+  if (!sec || sec.ok) return null;
+  var dead = sec.data == null;
+  return h('p', { class: 'note' + (dead ? ' is-dead' : '') }, [
+    document.createTextNode(dead
+      ? 'No data has been collected yet. Last attempt failed: '
+      : 'Showing the last good reading, ' + ageText(sec.fetchedAt) + ' old. Refresh failed: '),
+    h('code', { text: sec.error || 'unknown error' })
+  ]);
+}
+
+/* ------------------------------------------------------------------ *
+ * Bins. The state is recomputed here from the absolute dates rather than
+ * read from the file, so the page stays right across midnight even if
+ * the collector has stopped running.
+ * ------------------------------------------------------------------ */
+
+function lidBlock(s) {
+  return h('div', { class: 'lid lid--' + s.lid }, [
+    txt('span', 'meta', s.frequency || ''),
+    txt('span', 'name', s.name)
+  ]);
+}
+function lidDots(streams) {
+  return h('span', { class: 'dots' }, streams.map(function (s) {
+    return h('span', { class: 'dot dot--' + s.lid, title: s.name });
+  }));
+}
+
+function renderBins(sec) {
+  var wrap = h('section', { class: 'region hero' });
+  if (isStale(sec)) wrap.classList.add('is-stale');
+  wrap.appendChild(regionHead('Bins', sec));
+
+  var data = sec && sec.data;
+  if (!data || !data.streams || !data.streams.length) {
+    wrap.appendChild(txt('p', 'missing', 'No collection schedule available.'));
+    var n0 = failNote(sec);
+    if (n0) wrap.appendChild(n0);
+    return wrap;
+  }
+
+  var today = todayYmd();
+  var streams = data.streams.map(function (s) {
+    var c = {};
+    Object.keys(s).forEach(function (k) { c[k] = s[k]; });
+    c.days = daysBetween(today, s.date);
+    return c;
+  }).filter(function (s) { return s.days >= 0; });
+
+  var tonight = streams.filter(function (s) { return s.days === 1; });
+  var todayOut = streams.filter(function (s) { return s.days === 0; });
+
+  if (tonight.length) {
+    wrap.appendChild(txt('p', 'call', tonight.length === 1
+      ? 'Bin out tonight' : 'Bins out tonight'));
+    wrap.appendChild(txt('p', 'when', 'Collected ' + longDate(tonight[0].date)));
+    wrap.appendChild(h('div', { class: 'lids' }, tonight.map(lidBlock)));
+  } else if (todayOut.length) {
+    wrap.classList.add('hero--today');
+    wrap.appendChild(txt('p', 'call', 'Collection today'));
+    wrap.appendChild(txt('p', 'when', longDate(todayOut[0].date)));
+    wrap.appendChild(h('div', { class: 'lids' }, todayOut.map(lidBlock)));
+  } else {
+    wrap.classList.add('hero--quiet');
+    var next = streams.slice().sort(function (a, b) { return a.days - b.days; })[0];
+    if (!next) {
+      wrap.appendChild(txt('p', 'missing', 'No upcoming collection dates.'));
+    } else {
+      var group = streams.filter(function (s) { return s.days === next.days; });
+      var line = h('p', { class: 'call' }, [lidDots(group)]);
+      line.appendChild(document.createTextNode(
+        group.map(function (s) { return s.name; }).join(' + ') + ' out ' +
+        (next.days === 2 ? 'tomorrow night' : longDate(addDaysYmd(next.date, -1)) + ' night')
+      ));
+      wrap.appendChild(line);
+      wrap.appendChild(txt('p', 'when',
+        'Collected ' + longDate(next.date) + ' \u00b7 in ' + next.days + ' days'));
+    }
+  }
+
+  if (streams.some(function (s) { return s.projected; })) {
+    wrap.appendChild(h('p', { class: 'note' }, [document.createTextNode(
+      'The published schedule has not been updated past its last date, so this ' +
+      'is projected forward on the stated collection frequency.')]));
+  }
+  var n = failNote(sec);
+  if (n) wrap.appendChild(n);
+  return wrap;
+}
+
+function addDaysYmd(ymd, n) {
+  return new Date(ymdToUTC(ymd) + n * 86400000).toISOString().slice(0, 10);
+}
+
+/* ------------------------------------------------------------------ *
+ * Weather, air, fire, holidays
+ * ------------------------------------------------------------------ */
+
+var WMO = {
+  0: 'Clear', 1: 'Mainly clear', 2: 'Partly cloudy', 3: 'Overcast',
+  45: 'Fog', 48: 'Freezing fog', 51: 'Light drizzle', 53: 'Drizzle',
+  55: 'Heavy drizzle', 56: 'Freezing drizzle', 57: 'Freezing drizzle',
+  61: 'Light rain', 63: 'Rain', 65: 'Heavy rain', 66: 'Freezing rain',
+  67: 'Freezing rain', 71: 'Light snow', 73: 'Snow', 75: 'Heavy snow',
+  77: 'Snow grains', 80: 'Showers', 81: 'Showers', 82: 'Heavy showers',
+  85: 'Snow showers', 86: 'Snow showers', 95: 'Thunderstorm',
+  96: 'Thunderstorm, hail', 99: 'Thunderstorm, hail'
+};
+var COMPASS = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE',
+  'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
+
+function num(v, dp) {
+  return v == null || !isFinite(v) ? null : Number(v).toFixed(dp == null ? 0 : dp);
+}
+function readout(value, unit) {
+  var n = h('div', { class: 'readout' }, [document.createTextNode(value)]);
+  if (unit) n.appendChild(txt('span', 'unit', unit));
+  return n;
+}
+function facts(pairs) {
+  var dl = h('dl', { class: 'facts' });
+  pairs.forEach(function (p) {
+    if (p[1] == null) return;
+    dl.appendChild(txt('dt', null, p[0]));
+    dl.appendChild(txt('dd', null, p[1]));
+  });
+  return dl.children.length ? dl : null;
+}
+
+/** A region that renders its data, or says plainly why it cannot. */
+function card(title, sec, build) {
+  var wrap = h('section', { class: 'region' });
+  if (isStale(sec)) wrap.classList.add('is-stale');
+  wrap.appendChild(regionHead(title, sec));
+  if (!sec || sec.data == null) {
+    wrap.appendChild(txt('p', 'missing', 'Not available.'));
+  } else {
+    (build(sec.data) || []).forEach(function (n) { if (n) wrap.appendChild(n); });
+  }
+  var note = failNote(sec);
+  if (note) wrap.appendChild(note);
+  return wrap;
+}
+
+function renderWeather(sec) {
+  return card('Weather', sec, function (d) {
+    var now = d.now || {};
+    var today = d.today || {};
+    var out = [];
+    out.push(readout(num(now.temp, 1) == null ? '--' : num(now.temp, 1), '\u00b0C'));
+
+    var sub = h('p', { class: 'sub' }, [txt('strong', null, WMO[now.code] || 'Unknown conditions')]);
+    if (num(today.max) != null && num(today.min) != null) {
+      sub.appendChild(document.createTextNode(
+        ' \u00b7 ' + num(today.max) + '\u00b0 / ' + num(today.min) + '\u00b0 today'));
+    }
+    out.push(sub);
+
+    out.push(facts([
+      ['Feels like', num(now.feelsLike, 1) == null ? null : num(now.feelsLike, 1) + ' \u00b0C'],
+      ['Wind', num(now.wind) == null ? null : num(now.wind) + ' km/h ' +
+        COMPASS[Math.round(((now.windDir || 0) % 360) / 22.5) % 16]],
+      ['Humidity', num(now.humidity) == null ? null : num(now.humidity) + '%'],
+      ['Rain chance', num(today.rainChance) == null ? null : num(today.rainChance) + '%'],
+      ['UV peak', num(today.uv, 1) == null ? null : num(today.uv, 1)],
+      ['Sun', today.sunrise ? clockOf(today.sunrise) + ' \u2013 ' + clockOf(today.sunset) : null]
+    ]));
+
+    if (d.hourly && d.hourly.length) {
+      var temps = d.hourly.map(function (x) { return x.temp; })
+        .filter(function (x) { return x != null; });
+      if (temps.length) {
+        var lo = Math.min.apply(null, temps), hi = Math.max.apply(null, temps);
+        var span = Math.max(1, hi - lo);
+        var strip = h('div', { class: 'hours', 'aria-hidden': 'true' });
+        d.hourly.forEach(function (x, i) {
+          var pct = x.temp == null ? 0 : 18 + 72 * ((x.temp - lo) / span);
+          strip.appendChild(h('div', { class: 'h' }, [
+            h('div', { class: 'bar', style: 'height:' + pct.toFixed(1) + '%' }),
+            txt('div', 't', i % 3 === 0 ? clockOf(x.time).slice(0, 2) : '')
+          ]));
+        });
+        out.push(strip);
+        out.push(h('p', { class: 'sr', text: 'Next twelve hours: ' +
+          d.hourly.map(function (x) {
+            return clockOf(x.time) + ' ' + num(x.temp, 1) + ' degrees';
+          }).join(', ') }));
+      }
+    }
+    return out;
+  });
+}
+
+function renderAir(sec) {
+  return card('Air quality', sec, function (d) {
+    return [
+      readout(d.aqi == null ? '--' : String(d.aqi), d.scale || 'US AQI'),
+      h('p', { class: 'sub' }, [txt('strong', null, d.band ? d.band.label : 'Unrated')]),
+      facts([
+        ['PM2.5', num(d.pm25, 1) == null ? null : num(d.pm25, 1) + ' \u00b5g/m\u00b3'],
+        ['PM10', num(d.pm10, 1) == null ? null : num(d.pm10, 1) + ' \u00b5g/m\u00b3'],
+        ['Reading', d.observedAt ? clockOf(d.observedAt) : null]
+      ])
+    ];
+  });
+}
+
+function renderHolidays(sec) {
+  return card('Public holidays', sec, function (d) {
+    if (d.isTodayHoliday) {
+      return [
+        h('p', { class: 'sub' }, [txt('strong', null, 'Today is ' + d.isTodayHoliday.name)]),
+        d.next ? txt('p', 'sub', 'Then ' + d.next.name + ', ' + longDate(d.next.date)) : null
+      ];
+    }
+    if (!d.next) return [txt('p', 'missing', 'No upcoming holidays listed.')];
+    var days = daysBetween(todayYmd(), d.next.date);
+    return [
+      readout(String(days), days === 1 ? 'day' : 'days'),
+      h('p', { class: 'sub' }, [
+        txt('strong', null, d.next.name),
+        document.createTextNode(' \u00b7 ' + longDate(d.next.date) +
+          (d.next.actOnly ? ' \u00b7 ACT only' : ''))
+      ])
+    ];
+  });
+}
+
+/**
+ * Rendered only when something is actually happening. Nothing active
+ * means no card at all, rather than an empty one.
+ */
+function renderFire(sec) {
+  if (!sec) return null;
+  /* Nothing active is silence. Not being able to check is not the same
+     thing, and during fire season it is worth saying out loud. */
+  if (sec.ok && sec.data == null) return null;
+
+  return card('Fire', sec, function (d) {
+    var out = [];
+    if (d.ban && (d.ban.today || d.ban.tomorrow)) {
+      out.push(h('p', { style: 'margin:0' }, [
+        txt('span', 'ban', d.ban.today ? 'Total fire ban today' : 'Total fire ban tomorrow')
+      ]));
+    }
+    if (d.rating && (d.rating.today || d.rating.tomorrow)) {
+      out.push(h('p', { class: 'sub' }, [
+        document.createTextNode('Fire danger '),
+        txt('strong', null, d.rating.today || 'not rated'),
+        document.createTextNode(d.rating.tomorrow
+          ? ' today, ' + d.rating.tomorrow + ' tomorrow' : ' today')
+      ]));
+    }
+    if (d.incidents && d.incidents.length) {
+      out.push(txt('p', 'sub', d.incidentCount + ' incident' +
+        (d.incidentCount === 1 ? '' : 's') + ' within ' + d.radiusKm + ' km'));
+      var ul = h('ul', { class: 'incidents' });
+      d.incidents.forEach(function (x) {
+        ul.appendChild(h('li', null, [
+          h('span', { class: 'what' }, [
+            txt('strong', null, x.type || 'Incident'),
+            document.createTextNode(x.suburb ? ' \u00b7 ' + x.suburb : '')
+          ]),
+          txt('span', 'dist', num(x.km, 1) + ' km')
+        ]));
+      });
+      out.push(ul);
+    }
+    return out;
+  });
+}
+
+/* ------------------------------------------------------------------ *
+ * Paint
+ * ------------------------------------------------------------------ */
+
+var DATA = null;
+var skyFront = document.getElementById('skyA');
+var skyBack = document.getElementById('skyB');
+var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+/** Today's real sunrise/sunset, or a plain fallback if weather is down. */
+function sunTimes() {
+  var w = DATA && DATA.sections && DATA.sections.weather;
+  var t = w && w.data && w.data.today;
+  var sr = t ? isoMinutes(t.sunrise) : null;
+  var ss = t ? isoMinutes(t.sunset) : null;
+  if (sr == null || ss == null || ss <= sr) return { sunrise: 390, sunset: 1065, real: false };
+  return { sunrise: sr, sunset: ss, real: true };
+}
+
+function paintSky() {
+  var s = sunTimes();
+  var sky = skyAt(minutesNow(), s.sunrise, s.sunset);
+  document.getElementById('panel').style.background = sky.panel;
+  var meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) meta.setAttribute('content', rgbToCss(sky.stops[0]));
+
+  if (reduceMotion.matches) {
+    skyFront.style.backgroundImage = sky.gradient;
+    skyBack.style.opacity = '0';
+    return;
+  }
+  /* Cross-fade the new gradient in on the upper layer, then hand it down
+     to the base layer so the next change has somewhere clean to fade. */
+  skyBack.style.backgroundImage = sky.gradient;
+  skyBack.style.opacity = '1';
+  window.setTimeout(function () {
+    skyFront.style.backgroundImage = sky.gradient;
+    var prev = skyBack.style.transition;
+    skyBack.style.transition = 'none';
+    skyBack.style.opacity = '0';
+    void skyBack.offsetHeight;
+    skyBack.style.transition = prev;
+  }, 1500);
+}
+
+function paintMasthead() {
+  var p = partsInTz(new Date());
+  document.getElementById('stamp').textContent =
+    p.weekday.slice(0, 3).toUpperCase() + ' ' +
+    new Intl.DateTimeFormat('en-AU', { timeZone: TZ, day: 'numeric', month: 'short' })
+      .format(new Date()).toUpperCase() + '  ' +
+    String(p.hour).padStart(2, '0') + ':' + String(p.minute).padStart(2, '0');
+
+  if (DATA) {
+    var name = DATA.houseName || 'Home';
+    document.getElementById('houseName').textContent = name;
+    document.title = name;
+    document.getElementById('place').textContent =
+      (DATA.suburb || 'Canberra') + ' \u00b7 ACT';
+  }
+}
+
+function paintFoot() {
+  var foot = document.getElementById('foot');
+  foot.textContent = '';
+  if (!DATA) return;
+  var order = ['bins', 'weather', 'air', 'holidays', 'fire'];
+  order.forEach(function (k) {
+    var sec = DATA.sections[k];
+    if (!sec) return;
+    var bad = !sec.ok;
+    foot.appendChild(h('span', {
+      class: bad ? 'bad' : 'ok',
+      text: k + ' ' + (sec.ok ? ageText(sec.fetchedAt) : 'failed'),
+      title: bad ? String(sec.error || '') : 'Fetched ' + sec.fetchedAt
+    }));
+  });
+}
+
+function paint() {
+  var content = document.getElementById('content');
+  content.textContent = '';
+  if (!DATA || !DATA.sections) return;
+  var s = DATA.sections;
+
+  content.appendChild(renderBins(s.bins));
+
+  var split = h('div', { class: 'split' }, [renderWeather(s.weather), renderAir(s.air)]);
+  content.appendChild(split);
+
+  var fireCard = renderFire(s.fire);
+  if (fireCard) content.appendChild(fireCard);
+  content.appendChild(renderHolidays(s.holidays));
+
+  paintMasthead();
+  paintFoot();
+  paintSky();
+}
+
+/* ------------------------------------------------------------------ *
+ * Load. A failure here is a stated failure, never an endless spinner.
+ * ------------------------------------------------------------------ */
+
+function showFatal(message) {
+  var content = document.getElementById('content');
+  content.textContent = '';
+  content.appendChild(h('section', { class: 'region is-stale' }, [
+    h('div', { class: 'head' }, [
+      txt('h2', null, 'Dashboard'),
+      h('div', { class: 'fill' }),
+      txt('span', 'age is-stale', 'no data')
+    ]),
+    txt('p', 'missing', 'Could not load the dashboard file.'),
+    h('p', { class: 'note is-dead' }, [
+      document.createTextNode('data/dashboard.json did not load: '),
+      h('code', { text: message }),
+      document.createTextNode(
+        location.protocol === 'file:'
+          ? ' \u2014 the page is open over file://, which blocks the fetch. Serve it over HTTP.'
+          : ' \u2014 the collector may not have run yet.')
+    ])
+  ]));
+  paintMasthead();
+  paintSky();
+}
+
+function load() {
+  return fetch('data/dashboard.json?t=' + Date.now(), { cache: 'no-store' })
+    .then(function (r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    })
+    .then(function (json) {
+      DATA = json;
+      if (json && json.timezone) TZ = json.timezone;
+      paint();
+    })
+    .catch(function (err) {
+      if (DATA) { paint(); return; }   /* keep whatever is already on screen */
+      showFatal(err && err.message ? err.message : String(err));
+    });
+}
+
+load();
+
+/* Ages and the clock move on their own; the file is re-read occasionally
+   in case the page is left open on a kitchen tablet. */
+window.setInterval(function () { paintMasthead(); paintFoot(); }, 30000);
+window.setInterval(paintSky, 60000);
+window.setInterval(load, 5 * 60000);
+
+document.addEventListener('visibilitychange', function () {
+  if (!document.hidden) load();
+});
+</script>
+</body>
+</html>

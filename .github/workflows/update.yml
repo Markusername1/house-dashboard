@@ -1,0 +1,46 @@
+name: update dashboard
+
+# Every 30 minutes. The collector reads the committed data/dashboard.json
+# before it writes, so a source that is down keeps its last good value and
+# its original timestamp — which means the file has to be committed back,
+# not regenerated from scratch on each run.
+
+on:
+  schedule:
+    - cron: '*/30 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-dashboard
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # A partial failure is a successful run: the page renders the stale
+      # value rather than nothing. fetch.js only exits non-zero if every
+      # source failed.
+      - name: Collect
+        run: node fetch.js
+
+      - name: Commit
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/dashboard.json
+          if git diff --cached --quiet; then
+            echo "no change"
+          else
+            git commit -m "data: refresh $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            git push
+          fi

@@ -1,0 +1,13 @@
+{
+  "houseName": "Home",
+
+  "suburb": "SPENCE",
+  "splitSuburb": null,
+
+  "latitude": -35.2117,
+  "longitude": 149.0575,
+  "timezone": "Australia/Sydney",
+
+  "binOutHour": 17,
+  "incidentRadiusKm": 15
+}
