@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-29T11:28:55.435Z",
+  "generatedAt": "2026-08-29T11:46:31.804Z",
   "houseName": "Home",
   "timezone": "Australia/Sydney",
   "suburb": "SPENCE",
   "sections": {
     "bins": {
       "ok": true,
-      "fetchedAt": "2026-08-29T11:28:55.370Z",
+      "fetchedAt": "2026-08-29T11:46:31.804Z",
       "data": {
         "suburb": "SPENCE",
         "splitSuburb": null,
@@ -56,18 +56,18 @@
     },
     "weather": {
       "ok": true,
-      "fetchedAt": "2026-08-29T11:28:55.435Z",
+      "fetchedAt": "2026-08-29T11:46:31.347Z",
       "data": {
         "now": {
-          "temp": 7.8,
-          "feelsLike": 6.6,
-          "humidity": 86,
+          "temp": 7.3,
+          "feelsLike": 6.2,
+          "humidity": 89,
           "code": 0,
-          "wind": 0.6,
-          "windDir": 288,
+          "wind": 0.4,
+          "windDir": 243,
           "isDay": false,
           "precipitation": 0,
-          "observedAt": "2026-08-29T21:15"
+          "observedAt": "2026-08-29T21:45"
         },
         "today": {
           "date": "2026-08-29",
@@ -117,7 +117,7 @@
             "min": 5.1,
             "rain": 0,
             "rainChance": 0,
-            "uv": 5.7,
+            "uv": 5.65,
             "sunrise": "2026-08-31T06:24",
             "sunset": "2026-08-31T17:43",
             "windMax": 13.6
@@ -189,7 +189,7 @@
     },
     "air": {
       "ok": true,
-      "fetchedAt": "2026-08-29T11:28:55.390Z",
+      "fetchedAt": "2026-08-29T11:46:31.329Z",
       "data": {
         "aqi": 54,
         "band": {
@@ -205,7 +205,7 @@
     },
     "holidays": {
       "ok": true,
-      "fetchedAt": "2026-08-29T11:28:54.497Z",
+      "fetchedAt": "2026-08-29T11:46:31.091Z",
       "data": {
         "asOf": "2026-08-29",
         "isTodayHoliday": null,
@@ -250,7 +250,7 @@
     },
     "fire": {
       "ok": true,
-      "fetchedAt": "2026-08-29T11:28:54.487Z",
+      "fetchedAt": "2026-08-29T11:46:31.520Z",
       "data": null
     }
   }
