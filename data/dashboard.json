@@ -1,19 +1,19 @@
 {
-  "generatedAt": "2026-08-29T11:47:44.216Z",
+  "generatedAt": "2026-08-29T16:38:13.928Z",
   "houseName": "Home",
   "timezone": "Australia/Sydney",
   "suburb": "SPENCE",
   "sections": {
     "bins": {
       "ok": true,
-      "fetchedAt": "2026-08-29T11:47:44.215Z",
+      "fetchedAt": "2026-08-29T16:38:13.770Z",
       "data": {
         "suburb": "SPENCE",
         "splitSuburb": null,
         "collectionWeek": "A",
         "greenwasteWeek": "Yellow",
         "greenwasteType": "Greenwaste",
-        "asOf": "2026-08-29",
+        "asOf": "2026-08-30",
         "streams": [
           {
             "key": "garbage",
@@ -25,7 +25,7 @@
             "weekday": "Wednesday",
             "scheduledDay": "Wednesday",
             "frequency": "Weekly",
-            "daysUntil": 4
+            "daysUntil": 3
           },
           {
             "key": "recycling",
@@ -37,7 +37,7 @@
             "weekday": "Wednesday",
             "scheduledDay": "Wednesday",
             "frequency": "Fortnightly",
-            "daysUntil": 4
+            "daysUntil": 3
           },
           {
             "key": "green",
@@ -49,119 +49,94 @@
             "weekday": "Wednesday",
             "scheduledDay": "Wednesday",
             "frequency": "Fortnightly",
-            "daysUntil": 11
+            "daysUntil": 10
           }
         ]
       }
     },
     "weather": {
       "ok": true,
-      "fetchedAt": "2026-08-29T11:47:43.899Z",
+      "fetchedAt": "2026-08-29T16:38:13.662Z",
       "data": {
         "now": {
-          "temp": 7.3,
-          "feelsLike": 6.2,
-          "humidity": 89,
-          "code": 0,
-          "wind": 0.4,
-          "windDir": 243,
+          "temp": 3.7,
+          "feelsLike": 1.8,
+          "humidity": 99,
+          "code": 2,
+          "wind": 2.2,
+          "windDir": 166,
           "isDay": false,
           "precipitation": 0,
-          "observedAt": "2026-08-29T21:45"
+          "observedAt": "2026-08-30T02:30"
         },
         "today": {
-          "date": "2026-08-29",
-          "weekday": "Saturday",
-          "code": 3,
-          "max": 17,
-          "min": 2.2,
+          "date": "2026-08-30",
+          "weekday": "Sunday",
+          "code": 2,
+          "max": 18.7,
+          "min": 2.3,
           "rain": 0,
           "rainChance": 0,
-          "uv": 5.45,
-          "sunrise": "2026-08-29T06:27",
-          "sunset": "2026-08-29T17:42",
-          "windMax": 11.9
+          "uv": 5.6,
+          "sunrise": "2026-08-30T06:26",
+          "sunset": "2026-08-30T17:42",
+          "windMax": 11.8
         },
         "days": [
           {
-            "date": "2026-08-29",
-            "weekday": "Saturday",
-            "code": 3,
-            "max": 17,
-            "min": 2.2,
-            "rain": 0,
-            "rainChance": 0,
-            "uv": 5.45,
-            "sunrise": "2026-08-29T06:27",
-            "sunset": "2026-08-29T17:42",
-            "windMax": 11.9
-          },
-          {
             "date": "2026-08-30",
             "weekday": "Sunday",
-            "code": 1,
-            "max": 18.2,
+            "code": 2,
+            "max": 18.7,
             "min": 2.3,
             "rain": 0,
             "rainChance": 0,
             "uv": 5.6,
             "sunrise": "2026-08-30T06:26",
             "sunset": "2026-08-30T17:42",
-            "windMax": 12.7
+            "windMax": 11.8
           },
           {
             "date": "2026-08-31",
             "weekday": "Monday",
             "code": 3,
-            "max": 18.5,
-            "min": 5.1,
+            "max": 19.3,
+            "min": 4.5,
             "rain": 0,
             "rainChance": 0,
             "uv": 5.65,
             "sunrise": "2026-08-31T06:24",
             "sunset": "2026-08-31T17:43",
-            "windMax": 13.6
+            "windMax": 13.8
+          },
+          {
+            "date": "2026-09-01",
+            "weekday": "Tuesday",
+            "code": 3,
+            "max": 17.8,
+            "min": 3.6,
+            "rain": 0,
+            "rainChance": 9,
+            "uv": 5.8,
+            "sunrise": "2026-09-01T06:23",
+            "sunset": "2026-09-01T17:44",
+            "windMax": 22.8
           }
         ],
         "hourly": [
           {
-            "time": "2026-08-29T21:00",
-            "temp": 8.1,
-            "rainChance": 0
-          },
-          {
-            "time": "2026-08-29T22:00",
-            "temp": 7.1,
-            "rainChance": 0
-          },
-          {
-            "time": "2026-08-29T23:00",
-            "temp": 6.3,
-            "rainChance": 0
-          },
-          {
-            "time": "2026-08-30T00:00",
-            "temp": 5.5,
-            "rainChance": 0
-          },
-          {
-            "time": "2026-08-30T01:00",
-            "temp": 4.8,
-            "rainChance": 0
-          },
-          {
             "time": "2026-08-30T02:00",
-            "temp": 4,
+            "temp": 3.9,
             "rainChance": 0
           },
           {
             "time": "2026-08-30T03:00",
-            "temp": 3.4,
+            "temp": 3.5,
             "rainChance": 0
           },
           {
             "time": "2026-08-30T04:00",
-            "temp": 3.1,
+            "temp": 3.2,
             "rainChance": 0
           },
           {
@@ -183,38 +158,63 @@
             "time": "2026-08-30T08:00",
             "temp": 5.1,
             "rainChance": 0
+          },
+          {
+            "time": "2026-08-30T09:00",
+            "temp": 8.1,
+            "rainChance": 0
+          },
+          {
+            "time": "2026-08-30T10:00",
+            "temp": 11.3,
+            "rainChance": 0
+          },
+          {
+            "time": "2026-08-30T11:00",
+            "temp": 14.2,
+            "rainChance": 0
+          },
+          {
+            "time": "2026-08-30T12:00",
+            "temp": 16.5,
+            "rainChance": 0
+          },
+          {
+            "time": "2026-08-30T13:00",
+            "temp": 18.2,
+            "rainChance": 0
           }
         ]
       }
     },
     "air": {
       "ok": true,
-      "fetchedAt": "2026-08-29T11:47:43.863Z",
+      "fetchedAt": "2026-08-29T16:38:13.661Z",
       "data": {
-        "aqi": 54,
+        "aqi": 52,
         "band": {
           "label": "Moderate",
           "tone": "ok"
         },
-        "pm25": 7.9,
-        "pm10": 8.4,
+        "pm25": 9.4,
+        "pm10": 9.8,
         "uv": 0,
-        "observedAt": "2026-08-29T21:00",
+        "observedAt": "2026-08-30T02:00",
         "scale": "US AQI"
       }
     },
     "holidays": {
       "ok": true,
-      "fetchedAt": "2026-08-29T11:47:43.483Z",
+      "fetchedAt": "2026-08-29T16:38:13.406Z",
       "data": {
-        "asOf": "2026-08-29",
+        "asOf": "2026-08-30",
         "isTodayHoliday": null,
         "next": {
           "date": "2026-10-05",
           "name": "Labour Day",
           "weekday": "Monday",
           "actOnly": true,
-          "daysUntil": 37
+          "daysUntil": 36
         },
         "upcoming": [
           {
@@ -222,35 +222,35 @@
             "name": "Labour Day",
             "weekday": "Monday",
             "actOnly": true,
-            "daysUntil": 37
+            "daysUntil": 36
           },
           {
             "date": "2026-12-25",
             "name": "Christmas Day",
             "weekday": "Friday",
             "actOnly": false,
-            "daysUntil": 118
+            "daysUntil": 117
           },
           {
             "date": "2026-12-28",
             "name": "Boxing Day",
             "weekday": "Monday",
             "actOnly": false,
-            "daysUntil": 121
+            "daysUntil": 120
           },
           {
             "date": "2027-01-01",
             "name": "New Year's Day",
             "weekday": "Friday",
             "actOnly": false,
-            "daysUntil": 125
+            "daysUntil": 124
           }
         ]
       }
     },
     "fire": {
       "ok": true,
-      "fetchedAt": "2026-08-29T11:47:44.199Z",
+      "fetchedAt": "2026-08-29T16:38:13.928Z",
       "data": null
     }
   }
