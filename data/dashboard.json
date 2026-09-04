@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-09-04T19:04:58.984Z",
+  "generatedAt": "2026-09-04T21:43:43.338Z",
   "houseName": "Home",
   "timezone": "Australia/Sydney",
   "suburb": "SPENCE",
   "sections": {
     "bins": {
       "ok": true,
-      "fetchedAt": "2026-09-04T19:04:58.714Z",
+      "fetchedAt": "2026-09-04T21:43:43.144Z",
       "data": {
         "suburb": "SPENCE",
         "splitSuburb": null,
@@ -56,31 +56,31 @@
     },
     "weather": {
       "ok": true,
-      "fetchedAt": "2026-09-04T19:04:58.878Z",
+      "fetchedAt": "2026-09-04T21:43:43.073Z",
       "data": {
         "now": {
-          "temp": 9.3,
-          "feelsLike": 7.6,
-          "humidity": 98,
-          "code": 0,
-          "wind": 9.7,
-          "windDir": 349,
-          "isDay": false,
-          "precipitation": 0,
-          "observedAt": "2026-09-05T05:00"
+          "temp": 10.4,
+          "feelsLike": 8.6,
+          "humidity": 92,
+          "code": 51,
+          "wind": 10.3,
+          "windDir": 354,
+          "isDay": true,
+          "precipitation": 0.1,
+          "observedAt": "2026-09-05T07:30"
         },
         "today": {
           "date": "2026-09-05",
           "weekday": "Saturday",
           "code": 81,
           "max": 17.1,
-          "min": 8.9,
-          "rain": 6.5,
+          "min": 9,
+          "rain": 8.6,
           "rainChance": 100,
           "uv": 5.7,
           "sunrise": "2026-09-05T06:17",
           "sunset": "2026-09-05T17:47",
-          "windMax": 23.2
+          "windMax": 22
         },
         "days": [
           {
@@ -88,124 +88,124 @@
             "weekday": "Saturday",
             "code": 81,
             "max": 17.1,
-            "min": 8.9,
-            "rain": 6.5,
+            "min": 9,
+            "rain": 8.6,
             "rainChance": 100,
             "uv": 5.7,
             "sunrise": "2026-09-05T06:17",
             "sunset": "2026-09-05T17:47",
-            "windMax": 23.2
+            "windMax": 22
           },
           {
             "date": "2026-09-06",
             "weekday": "Sunday",
-            "code": 55,
-            "max": 17.8,
-            "min": 6.3,
-            "rain": 1.2,
+            "code": 51,
+            "max": 17.9,
+            "min": 6.8,
+            "rain": 0.4,
             "rainChance": 87,
             "uv": 5.9,
             "sunrise": "2026-09-06T06:16",
             "sunset": "2026-09-06T17:47",
-            "windMax": 22
+            "windMax": 23
           },
           {
             "date": "2026-09-07",
             "weekday": "Monday",
             "code": 51,
-            "max": 14.8,
+            "max": 15.6,
             "min": 5,
             "rain": 0.1,
             "rainChance": 29,
             "uv": 5.8,
             "sunrise": "2026-09-07T06:15",
             "sunset": "2026-09-07T17:48",
-            "windMax": 9.7
+            "windMax": 14.8
           }
         ],
         "hourly": [
           {
-            "time": "2026-09-05T05:00",
-            "temp": 9.3,
-            "rainChance": 43
-          },
-          {
-            "time": "2026-09-05T06:00",
-            "temp": 9,
-            "rainChance": 50
-          },
-          {
             "time": "2026-09-05T07:00",
-            "temp": 9.2,
+            "temp": 9.5,
             "rainChance": 55
           },
           {
             "time": "2026-09-05T08:00",
-            "temp": 10.8,
+            "temp": 11.5,
             "rainChance": 60
           },
           {
             "time": "2026-09-05T09:00",
-            "temp": 13.3,
+            "temp": 13.1,
             "rainChance": 63
           },
           {
             "time": "2026-09-05T10:00",
-            "temp": 15.4,
+            "temp": 14.6,
             "rainChance": 65
           },
           {
             "time": "2026-09-05T11:00",
-            "temp": 15.9,
+            "temp": 15.5,
             "rainChance": 62
           },
           {
             "time": "2026-09-05T12:00",
-            "temp": 15.4,
+            "temp": 17.1,
             "rainChance": 58
           },
           {
             "time": "2026-09-05T13:00",
-            "temp": 17.1,
+            "temp": 17,
             "rainChance": 59
           },
           {
             "time": "2026-09-05T14:00",
-            "temp": 16.4,
+            "temp": 16,
             "rainChance": 72
           },
           {
             "time": "2026-09-05T15:00",
-            "temp": 13.7,
+            "temp": 13.8,
             "rainChance": 89
           },
           {
             "time": "2026-09-05T16:00",
-            "temp": 14.2,
+            "temp": 13.6,
             "rainChance": 100
+          },
+          {
+            "time": "2026-09-05T17:00",
+            "temp": 13.4,
+            "rainChance": 96
+          },
+          {
+            "time": "2026-09-05T18:00",
+            "temp": 13.3,
+            "rainChance": 84
           }
         ]
       }
     },
     "air": {
       "ok": true,
-      "fetchedAt": "2026-09-04T19:04:58.829Z",
+      "fetchedAt": "2026-09-04T21:43:43.072Z",
       "data": {
         "aqi": 21,
         "band": {
           "label": "Good",
           "tone": "good"
         },
-        "pm25": 0.8,
-        "pm10": 1,
-        "uv": 0,
-        "observedAt": "2026-09-05T05:00",
+        "pm25": 1.8,
+        "pm10": 3.7,
+        "uv": 0.2,
+        "observedAt": "2026-09-05T07:00",
         "scale": "US AQI"
       }
     },
     "holidays": {
       "ok": true,
-      "fetchedAt": "2026-09-04T19:04:58.707Z",
+      "fetchedAt": "2026-09-04T21:43:42.841Z",
       "data": {
         "asOf": "2026-09-05",
         "isTodayHoliday": null,
@@ -250,7 +250,7 @@
     },
     "fire": {
       "ok": true,
-      "fetchedAt": "2026-09-04T19:04:58.984Z",
+      "fetchedAt": "2026-09-04T21:43:43.338Z",
       "data": null
     }
   }
