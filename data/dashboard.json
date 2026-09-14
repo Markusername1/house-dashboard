@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-09-14T19:48:44.057Z",
+  "generatedAt": "2026-09-14T23:03:22.990Z",
   "houseName": "Home",
   "timezone": "Australia/Sydney",
   "suburb": "SPENCE",
   "sections": {
     "bins": {
       "ok": true,
-      "fetchedAt": "2026-09-14T19:48:44.001Z",
+      "fetchedAt": "2026-09-14T23:03:21.166Z",
       "data": {
         "suburb": "SPENCE",
         "splitSuburb": null,
@@ -56,18 +56,18 @@
     },
     "weather": {
       "ok": true,
-      "fetchedAt": "2026-09-14T19:48:43.372Z",
+      "fetchedAt": "2026-09-14T23:03:22.990Z",
       "data": {
         "now": {
-          "temp": 9.3,
-          "feelsLike": 8.5,
-          "humidity": 100,
-          "code": 3,
-          "wind": 4.5,
-          "windDir": 317,
-          "isDay": false,
+          "temp": 12.8,
+          "feelsLike": 11.8,
+          "humidity": 90,
+          "code": 1,
+          "wind": 8.7,
+          "windDir": 336,
+          "isDay": true,
           "precipitation": 0,
-          "observedAt": "2026-09-15T05:45"
+          "observedAt": "2026-09-15T09:00"
         },
         "today": {
           "date": "2026-09-15",
@@ -125,26 +125,6 @@
         ],
         "hourly": [
           {
-            "time": "2026-09-15T05:00",
-            "temp": 9.1,
-            "rainChance": 0
-          },
-          {
-            "time": "2026-09-15T06:00",
-            "temp": 9.4,
-            "rainChance": 0
-          },
-          {
-            "time": "2026-09-15T07:00",
-            "temp": 10.2,
-            "rainChance": 0
-          },
-          {
-            "time": "2026-09-15T08:00",
-            "temp": 11.4,
-            "rainChance": 0
-          },
-          {
             "time": "2026-09-15T09:00",
             "temp": 12.8,
             "rainChance": 0
@@ -183,29 +163,49 @@
             "time": "2026-09-15T16:00",
             "temp": 15.7,
             "rainChance": 0
+          },
+          {
+            "time": "2026-09-15T17:00",
+            "temp": 14,
+            "rainChance": 0
+          },
+          {
+            "time": "2026-09-15T18:00",
+            "temp": 11.8,
+            "rainChance": 0
+          },
+          {
+            "time": "2026-09-15T19:00",
+            "temp": 10.3,
+            "rainChance": 0
+          },
+          {
+            "time": "2026-09-15T20:00",
+            "temp": 9.1,
+            "rainChance": 0
           }
         ]
       }
     },
     "air": {
       "ok": true,
-      "fetchedAt": "2026-09-14T19:48:43.692Z",
+      "fetchedAt": "2026-09-14T23:03:21.430Z",
       "data": {
-        "aqi": 23,
+        "aqi": 27,
         "band": {
           "label": "Good",
           "tone": "good"
         },
-        "pm25": 7.9,
-        "pm10": 9.8,
-        "uv": 0,
-        "observedAt": "2026-09-15T05:00",
+        "pm25": 5.8,
+        "pm10": 7.9,
+        "uv": 1.7,
+        "observedAt": "2026-09-15T09:00",
         "scale": "US AQI"
       }
     },
     "holidays": {
       "ok": true,
-      "fetchedAt": "2026-09-14T19:48:43.472Z",
+      "fetchedAt": "2026-09-14T23:03:20.911Z",
       "data": {
         "asOf": "2026-09-15",
         "isTodayHoliday": null,
@@ -250,7 +250,7 @@
     },
     "fire": {
       "ok": true,
-      "fetchedAt": "2026-09-14T19:48:44.057Z",
+      "fetchedAt": "2026-09-14T23:03:21.317Z",
       "data": null
     }
   }
