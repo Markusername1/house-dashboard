@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-09-20T14:19:41.570Z",
+  "generatedAt": "2026-09-20T17:37:32.252Z",
   "houseName": "Home",
   "timezone": "Australia/Sydney",
   "suburb": "SPENCE",
   "sections": {
     "bins": {
       "ok": true,
-      "fetchedAt": "2026-09-20T14:19:41.570Z",
+      "fetchedAt": "2026-09-20T17:37:31.853Z",
       "data": {
         "suburb": "SPENCE",
         "splitSuburb": null,
@@ -56,18 +56,18 @@
     },
     "weather": {
       "ok": true,
-      "fetchedAt": "2026-09-20T14:19:41.282Z",
+      "fetchedAt": "2026-09-20T17:37:31.559Z",
       "data": {
         "now": {
-          "temp": 11.7,
-          "feelsLike": 9.3,
-          "humidity": 62,
+          "temp": 12,
+          "feelsLike": 8.5,
+          "humidity": 52,
           "code": 0,
-          "wind": 7.2,
-          "windDir": 3,
+          "wind": 11.5,
+          "windDir": 350,
           "isDay": false,
           "precipitation": 0,
-          "observedAt": "2026-09-21T00:15"
+          "observedAt": "2026-09-21T03:30"
         },
         "today": {
           "date": "2026-09-21",
@@ -76,7 +76,7 @@
           "max": 20.8,
           "min": 9.1,
           "rain": 0.2,
-          "rainChance": 27,
+          "rainChance": 28,
           "uv": 6.75,
           "sunrise": "2026-09-21T05:55",
           "sunset": "2026-09-21T17:59",
@@ -90,7 +90,7 @@
             "max": 20.8,
             "min": 9.1,
             "rain": 0.2,
-            "rainChance": 27,
+            "rainChance": 28,
             "uv": 6.75,
             "sunrise": "2026-09-21T05:55",
             "sunset": "2026-09-21T17:59",
@@ -103,7 +103,7 @@
             "max": 15,
             "min": 7.6,
             "rain": 0,
-            "rainChance": 27,
+            "rainChance": 24,
             "uv": 5.5,
             "sunrise": "2026-09-22T05:53",
             "sunset": "2026-09-22T17:59",
@@ -116,7 +116,7 @@
             "max": 19.9,
             "min": 8.9,
             "rain": 0,
-            "rainChance": 2,
+            "rainChance": 6,
             "uv": 6.7,
             "sunrise": "2026-09-23T05:52",
             "sunset": "2026-09-23T18:00",
@@ -124,21 +124,6 @@
           }
         ],
         "hourly": [
-          {
-            "time": "2026-09-21T00:00",
-            "temp": 11.8,
-            "rainChance": 0
-          },
-          {
-            "time": "2026-09-21T01:00",
-            "temp": 11.4,
-            "rainChance": 0
-          },
-          {
-            "time": "2026-09-21T02:00",
-            "temp": 10.9,
-            "rainChance": 0
-          },
           {
             "time": "2026-09-21T03:00",
             "temp": 11.5,
@@ -183,29 +168,44 @@
             "time": "2026-09-21T11:00",
             "temp": 19.7,
             "rainChance": 0
+          },
+          {
+            "time": "2026-09-21T12:00",
+            "temp": 20.6,
+            "rainChance": 0
+          },
+          {
+            "time": "2026-09-21T13:00",
+            "temp": 20.8,
+            "rainChance": 0
+          },
+          {
+            "time": "2026-09-21T14:00",
+            "temp": 20.7,
+            "rainChance": 0
           }
         ]
       }
     },
     "air": {
       "ok": true,
-      "fetchedAt": "2026-09-20T14:19:41.265Z",
+      "fetchedAt": "2026-09-20T17:37:31.880Z",
       "data": {
-        "aqi": 28,
+        "aqi": 26,
         "band": {
           "label": "Good",
           "tone": "good"
         },
-        "pm25": 1,
-        "pm10": 1.2,
+        "pm25": 0.9,
+        "pm10": 1.1,
         "uv": 0,
-        "observedAt": "2026-09-21T00:00",
+        "observedAt": "2026-09-21T03:00",
         "scale": "US AQI"
       }
     },
     "holidays": {
       "ok": true,
-      "fetchedAt": "2026-09-20T14:19:41.073Z",
+      "fetchedAt": "2026-09-20T17:37:31.660Z",
       "data": {
         "asOf": "2026-09-21",
         "isTodayHoliday": null,
@@ -250,7 +250,7 @@
     },
     "fire": {
       "ok": true,
-      "fetchedAt": "2026-09-20T14:19:41.513Z",
+      "fetchedAt": "2026-09-20T17:37:32.252Z",
       "data": null
     }
   }
