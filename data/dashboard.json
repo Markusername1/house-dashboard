@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-10-11T00:47:40.612Z",
+  "generatedAt": "2026-10-11T06:59:38.756Z",
   "houseName": "Home",
   "timezone": "Australia/Sydney",
   "suburb": "SPENCE",
   "sections": {
     "bins": {
       "ok": true,
-      "fetchedAt": "2026-10-11T00:47:40.612Z",
+      "fetchedAt": "2026-10-11T06:59:38.564Z",
       "data": {
         "suburb": "SPENCE",
         "splitSuburb": null,
@@ -56,18 +56,18 @@
     },
     "weather": {
       "ok": true,
-      "fetchedAt": "2026-10-11T00:47:40.127Z",
+      "fetchedAt": "2026-10-11T06:59:37.918Z",
       "data": {
         "now": {
-          "temp": 19.3,
-          "feelsLike": 18.4,
-          "humidity": 44,
+          "temp": 20.4,
+          "feelsLike": 18.5,
+          "humidity": 48,
           "code": 0,
-          "wind": 13.5,
-          "windDir": 346,
+          "wind": 11.7,
+          "windDir": 326,
           "isDay": true,
           "precipitation": 0,
-          "observedAt": "2026-10-11T11:45"
+          "observedAt": "2026-10-11T17:45"
         },
         "today": {
           "date": "2026-10-11",
@@ -103,8 +103,8 @@
             "max": 25,
             "min": 8.8,
             "rain": 0.6,
-            "rainChance": 60,
-            "uv": 7.8,
+            "rainChance": 75,
+            "uv": 6,
             "sunrise": "2026-10-12T06:25",
             "sunset": "2026-10-12T19:15",
             "windMax": 27.5
@@ -116,44 +116,14 @@
             "max": 18.2,
             "min": 10.3,
             "rain": 0,
-            "rainChance": 35,
-            "uv": 6.7,
+            "rainChance": 25,
+            "uv": 7,
             "sunrise": "2026-10-13T06:24",
             "sunset": "2026-10-13T19:16",
             "windMax": 15.4
           }
         ],
         "hourly": [
-          {
-            "time": "2026-10-11T11:00",
-            "temp": 17.7,
-            "rainChance": 0
-          },
-          {
-            "time": "2026-10-11T12:00",
-            "temp": 19.7,
-            "rainChance": 0
-          },
-          {
-            "time": "2026-10-11T13:00",
-            "temp": 20.7,
-            "rainChance": 0
-          },
-          {
-            "time": "2026-10-11T14:00",
-            "temp": 21.7,
-            "rainChance": 0
-          },
-          {
-            "time": "2026-10-11T15:00",
-            "temp": 22,
-            "rainChance": 0
-          },
-          {
-            "time": "2026-10-11T16:00",
-            "temp": 21.7,
-            "rainChance": 0
-          },
           {
             "time": "2026-10-11T17:00",
             "temp": 21,
@@ -183,29 +153,59 @@
             "time": "2026-10-11T22:00",
             "temp": 13.2,
             "rainChance": 0
+          },
+          {
+            "time": "2026-10-11T23:00",
+            "temp": 12.5,
+            "rainChance": 0
+          },
+          {
+            "time": "2026-10-12T00:00",
+            "temp": 11.2,
+            "rainChance": 0
+          },
+          {
+            "time": "2026-10-12T01:00",
+            "temp": 10,
+            "rainChance": 0
+          },
+          {
+            "time": "2026-10-12T02:00",
+            "temp": 9.7,
+            "rainChance": 0
+          },
+          {
+            "time": "2026-10-12T03:00",
+            "temp": 9.8,
+            "rainChance": 0
+          },
+          {
+            "time": "2026-10-12T04:00",
+            "temp": 9.5,
+            "rainChance": 0
           }
         ]
       }
     },
     "air": {
       "ok": true,
-      "fetchedAt": "2026-10-11T00:47:40.172Z",
+      "fetchedAt": "2026-10-11T06:59:38.385Z",
       "data": {
-        "aqi": 17,
+        "aqi": 27,
         "band": {
           "label": "Good",
           "tone": "good"
         },
-        "pm25": 3.2,
-        "pm10": 5.1,
-        "uv": 6.9,
-        "observedAt": "2026-10-11T11:00",
+        "pm25": 1.9,
+        "pm10": 2.9,
+        "uv": 1.5,
+        "observedAt": "2026-10-11T17:00",
         "scale": "US AQI"
       }
     },
     "holidays": {
       "ok": true,
-      "fetchedAt": "2026-10-11T00:47:39.850Z",
+      "fetchedAt": "2026-10-11T06:59:38.108Z",
       "data": {
         "asOf": "2026-10-11",
         "isTodayHoliday": null,
@@ -250,7 +250,7 @@
     },
     "fire": {
       "ok": true,
-      "fetchedAt": "2026-10-11T00:47:40.176Z",
+      "fetchedAt": "2026-10-11T06:59:38.756Z",
       "data": null
     }
   }
