@@ -1,19 +1,19 @@
 {
-  "generatedAt": "2026-11-07T10:37:19.118Z",
+  "generatedAt": "2026-11-07T16:47:28.829Z",
   "houseName": "Home",
   "timezone": "Australia/Sydney",
   "suburb": "SPENCE",
   "sections": {
     "bins": {
       "ok": true,
-      "fetchedAt": "2026-11-07T10:37:18.997Z",
+      "fetchedAt": "2026-11-07T16:47:28.828Z",
       "data": {
         "suburb": "SPENCE",
         "splitSuburb": null,
         "collectionWeek": "A",
         "greenwasteWeek": "Yellow",
         "greenwasteType": "Greenwaste",
-        "asOf": "2026-11-07",
+        "asOf": "2026-11-08",
         "streams": [
           {
             "key": "garbage",
@@ -25,7 +25,7 @@
             "weekday": "Wednesday",
             "scheduledDay": "Wednesday",
             "frequency": "Weekly",
-            "daysUntil": 4
+            "daysUntil": 3
           },
           {
             "key": "recycling",
@@ -37,7 +37,7 @@
             "weekday": "Wednesday",
             "scheduledDay": "Wednesday",
             "frequency": "Fortnightly",
-            "daysUntil": 4
+            "daysUntil": 3
           },
           {
             "key": "green",
@@ -49,124 +49,94 @@
             "weekday": "Wednesday",
             "scheduledDay": "Wednesday",
             "frequency": "Fortnightly",
-            "daysUntil": 11
+            "daysUntil": 10
           }
         ]
       }
     },
     "weather": {
       "ok": true,
-      "fetchedAt": "2026-11-07T10:37:18.844Z",
+      "fetchedAt": "2026-11-07T16:47:28.459Z",
       "data": {
         "now": {
-          "temp": 8.3,
-          "feelsLike": 4.3,
-          "humidity": 59,
-          "code": 1,
-          "wind": 13.7,
-          "windDir": 164,
+          "temp": 4.3,
+          "feelsLike": 1,
+          "humidity": 69,
+          "code": 0,
+          "wind": 6.9,
+          "windDir": 186,
           "isDay": false,
           "precipitation": 0,
-          "observedAt": "2026-11-07T21:30"
+          "observedAt": "2026-11-08T03:45"
         },
         "today": {
-          "date": "2026-11-07",
-          "weekday": "Saturday",
-          "code": 53,
-          "max": 19.2,
-          "min": 6.5,
-          "rain": 0.9,
-          "rainChance": 88,
-          "uv": 8.25,
-          "sunrise": "2026-11-07T05:55",
-          "sunset": "2026-11-07T19:39",
-          "windMax": 25.2
+          "date": "2026-11-08",
+          "weekday": "Sunday",
+          "code": 2,
+          "max": 15.1,
+          "min": 4,
+          "rain": 0,
+          "rainChance": 2,
+          "uv": 8.65,
+          "sunrise": "2026-11-08T05:54",
+          "sunset": "2026-11-08T19:40",
+          "windMax": 20.2
         },
         "days": [
-          {
-            "date": "2026-11-07",
-            "weekday": "Saturday",
-            "code": 53,
-            "max": 19.2,
-            "min": 6.5,
-            "rain": 0.9,
-            "rainChance": 88,
-            "uv": 8.25,
-            "sunrise": "2026-11-07T05:55",
-            "sunset": "2026-11-07T19:39",
-            "windMax": 25.2
-          },
           {
             "date": "2026-11-08",
             "weekday": "Sunday",
             "code": 2,
             "max": 15.1,
-            "min": 3.9,
+            "min": 4,
             "rain": 0,
-            "rainChance": 6,
-            "uv": 8.7,
+            "rainChance": 2,
+            "uv": 8.65,
             "sunrise": "2026-11-08T05:54",
             "sunset": "2026-11-08T19:40",
-            "windMax": 20.8
+            "windMax": 20.2
           },
           {
             "date": "2026-11-09",
             "weekday": "Monday",
             "code": 3,
-            "max": 18.1,
-            "min": 5.1,
+            "max": 18.2,
+            "min": 5.7,
             "rain": 0,
             "rainChance": 0,
             "uv": 8.75,
             "sunrise": "2026-11-09T05:54",
             "sunset": "2026-11-09T19:41",
-            "windMax": 15
+            "windMax": 13.3
+          },
+          {
+            "date": "2026-11-10",
+            "weekday": "Tuesday",
+            "code": 45,
+            "max": 22.7,
+            "min": 5.6,
+            "rain": 0,
+            "rainChance": 6,
+            "uv": 8.65,
+            "sunrise": "2026-11-10T05:53",
+            "sunset": "2026-11-10T19:42",
+            "windMax": 20.3
           }
         ],
         "hourly": [
           {
-            "time": "2026-11-07T21:00",
-            "temp": 8.7,
-            "rainChance": 74
-          },
-          {
-            "time": "2026-11-07T22:00",
-            "temp": 7.9,
-            "rainChance": 42
-          },
-          {
-            "time": "2026-11-07T23:00",
-            "temp": 7.2,
-            "rainChance": 16
-          },
-          {
-            "time": "2026-11-08T00:00",
-            "temp": 6.5,
-            "rainChance": 6
-          },
-          {
-            "time": "2026-11-08T01:00",
-            "temp": 5.7,
-            "rainChance": 2
-          },
-          {
-            "time": "2026-11-08T02:00",
-            "temp": 4.9,
-            "rainChance": 0
-          },
-          {
             "time": "2026-11-08T03:00",
-            "temp": 4.3,
+            "temp": 4.4,
             "rainChance": 0
           },
           {
             "time": "2026-11-08T04:00",
-            "temp": 3.9,
+            "temp": 4.2,
             "rainChance": 0
           },
           {
             "time": "2026-11-08T05:00",
-            "temp": 4.1,
+            "temp": 3.9,
             "rainChance": 0
           },
           {
@@ -176,12 +146,42 @@
           },
           {
             "time": "2026-11-08T07:00",
-            "temp": 5.9,
+            "temp": 5.8,
             "rainChance": 0
           },
           {
             "time": "2026-11-08T08:00",
             "temp": 7.2,
+            "rainChance": 0
+          },
+          {
+            "time": "2026-11-08T09:00",
+            "temp": 9,
+            "rainChance": 0
+          },
+          {
+            "time": "2026-11-08T10:00",
+            "temp": 10.7,
+            "rainChance": 0
+          },
+          {
+            "time": "2026-11-08T11:00",
+            "temp": 12.2,
+            "rainChance": 0
+          },
+          {
+            "time": "2026-11-08T12:00",
+            "temp": 13.2,
+            "rainChance": 0
+          },
+          {
+            "time": "2026-11-08T13:00",
+            "temp": 13.6,
+            "rainChance": 0
+          },
+          {
+            "time": "2026-11-08T14:00",
+            "temp": 14.8,
             "rainChance": 0
           }
         ]
@@ -189,32 +189,32 @@
     },
     "air": {
       "ok": true,
-      "fetchedAt": "2026-11-07T10:37:19.118Z",
+      "fetchedAt": "2026-11-07T16:47:28.785Z",
       "data": {
-        "aqi": 26,
+        "aqi": 18,
         "band": {
           "label": "Good",
           "tone": "good"
         },
-        "pm25": 0.9,
-        "pm10": 1.6,
+        "pm25": 2.1,
+        "pm10": 3.3,
         "uv": 0,
-        "observedAt": "2026-11-07T21:00",
+        "observedAt": "2026-11-08T03:00",
         "scale": "US AQI"
       }
     },
     "holidays": {
       "ok": true,
-      "fetchedAt": "2026-11-07T10:37:18.839Z",
+      "fetchedAt": "2026-11-07T16:47:28.410Z",
       "data": {
-        "asOf": "2026-11-07",
+        "asOf": "2026-11-08",
         "isTodayHoliday": null,
         "next": {
           "date": "2026-12-25",
           "name": "Christmas Day",
           "weekday": "Friday",
           "actOnly": false,
-          "daysUntil": 48
+          "daysUntil": 47
         },
         "upcoming": [
           {
@@ -222,35 +222,35 @@
             "name": "Christmas Day",
             "weekday": "Friday",
             "actOnly": false,
-            "daysUntil": 48
+            "daysUntil": 47
           },
           {
             "date": "2026-12-28",
             "name": "Boxing Day",
             "weekday": "Monday",
             "actOnly": false,
-            "daysUntil": 51
+            "daysUntil": 50
           },
           {
             "date": "2027-01-01",
             "name": "New Year's Day",
             "weekday": "Friday",
             "actOnly": false,
-            "daysUntil": 55
+            "daysUntil": 54
           },
           {
             "date": "2027-01-26",
             "name": "Australia Day",
             "weekday": "Tuesday",
             "actOnly": false,
-            "daysUntil": 80
+            "daysUntil": 79
           }
         ]
       }
     },
     "fire": {
       "ok": true,
-      "fetchedAt": "2026-11-07T10:37:18.929Z",
+      "fetchedAt": "2026-11-07T16:47:28.829Z",
       "data": null
     }
   }
