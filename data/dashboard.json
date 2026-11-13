@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-11-13T17:06:14.598Z",
+  "generatedAt": "2026-11-13T22:48:22.646Z",
   "houseName": "Home",
   "timezone": "Australia/Sydney",
   "suburb": "SPENCE",
   "sections": {
     "bins": {
       "ok": true,
-      "fetchedAt": "2026-11-13T17:06:14.598Z",
+      "fetchedAt": "2026-11-13T22:48:22.538Z",
       "data": {
         "suburb": "SPENCE",
         "splitSuburb": null,
@@ -56,54 +56,54 @@
     },
     "weather": {
       "ok": true,
-      "fetchedAt": "2026-11-13T17:06:09.706Z",
+      "fetchedAt": "2026-11-13T22:48:22.321Z",
       "data": {
         "now": {
-          "temp": 13.9,
-          "feelsLike": 13.7,
-          "humidity": 93,
-          "code": 0,
-          "wind": 7,
-          "windDir": 337,
-          "isDay": false,
+          "temp": 19.6,
+          "feelsLike": 19.4,
+          "humidity": 73,
+          "code": 1,
+          "wind": 13,
+          "windDir": 323,
+          "isDay": true,
           "precipitation": 0,
-          "observedAt": "2026-11-14T04:00"
+          "observedAt": "2026-11-14T09:45"
         },
         "today": {
           "date": "2026-11-14",
           "weekday": "Saturday",
           "code": 95,
-          "max": 23.7,
-          "min": 13.6,
-          "rain": 6.2,
-          "rainChance": 99,
-          "uv": 6.6,
+          "max": 23,
+          "min": 13.5,
+          "rain": 6.8,
+          "rainChance": 97,
+          "uv": 8.35,
           "sunrise": "2026-11-14T05:50",
           "sunset": "2026-11-14T19:46",
-          "windMax": 19
+          "windMax": 20
         },
         "days": [
           {
             "date": "2026-11-14",
             "weekday": "Saturday",
             "code": 95,
-            "max": 23.7,
-            "min": 13.6,
-            "rain": 6.2,
-            "rainChance": 99,
-            "uv": 6.6,
+            "max": 23,
+            "min": 13.5,
+            "rain": 6.8,
+            "rainChance": 97,
+            "uv": 8.35,
             "sunrise": "2026-11-14T05:50",
             "sunset": "2026-11-14T19:46",
-            "windMax": 19
+            "windMax": 20
           },
           {
             "date": "2026-11-15",
             "weekday": "Sunday",
             "code": 51,
-            "max": 22.8,
-            "min": 13.3,
+            "max": 22.4,
+            "min": 12.9,
             "rain": 0.7,
-            "rainChance": 77,
+            "rainChance": 88,
             "uv": 8.35,
             "sunrise": "2026-11-15T05:49",
             "sunset": "2026-11-15T19:47",
@@ -114,98 +114,98 @@
             "weekday": "Monday",
             "code": 51,
             "max": 18.1,
-            "min": 10.8,
-            "rain": 0.8,
-            "rainChance": 58,
-            "uv": 5.15,
+            "min": 10,
+            "rain": 1.7,
+            "rainChance": 69,
+            "uv": 8,
             "sunrise": "2026-11-16T05:48",
             "sunset": "2026-11-16T19:48",
-            "windMax": 14.8
+            "windMax": 15.7
           }
         ],
         "hourly": [
           {
-            "time": "2026-11-14T04:00",
-            "temp": 13.9,
-            "rainChance": 5
-          },
-          {
-            "time": "2026-11-14T05:00",
-            "temp": 13.6,
-            "rainChance": 4
-          },
-          {
-            "time": "2026-11-14T06:00",
-            "temp": 13.9,
-            "rainChance": 10
-          },
-          {
-            "time": "2026-11-14T07:00",
-            "temp": 15.4,
-            "rainChance": 20
-          },
-          {
-            "time": "2026-11-14T08:00",
-            "temp": 17.2,
+            "time": "2026-11-14T09:00",
+            "temp": 18,
             "rainChance": 31
           },
           {
-            "time": "2026-11-14T09:00",
-            "temp": 19.1,
-            "rainChance": 42
-          },
-          {
             "time": "2026-11-14T10:00",
-            "temp": 20.8,
-            "rainChance": 54
+            "temp": 20.1,
+            "rainChance": 39
           },
           {
             "time": "2026-11-14T11:00",
-            "temp": 20.8,
-            "rainChance": 65
+            "temp": 21.8,
+            "rainChance": 49
           },
           {
             "time": "2026-11-14T12:00",
-            "temp": 21.9,
-            "rainChance": 74
+            "temp": 21.1,
+            "rainChance": 61
           },
           {
             "time": "2026-11-14T13:00",
-            "temp": 23.4,
-            "rainChance": 82
+            "temp": 21.5,
+            "rainChance": 75
           },
           {
             "time": "2026-11-14T14:00",
-            "temp": 20.2,
-            "rainChance": 88
+            "temp": 22.3,
+            "rainChance": 86
           },
           {
             "time": "2026-11-14T15:00",
-            "temp": 21.4,
+            "temp": 21.2,
+            "rainChance": 93
+          },
+          {
+            "time": "2026-11-14T16:00",
+            "temp": 22.6,
+            "rainChance": 97
+          },
+          {
+            "time": "2026-11-14T17:00",
+            "temp": 20.2,
             "rainChance": 94
+          },
+          {
+            "time": "2026-11-14T18:00",
+            "temp": 19.4,
+            "rainChance": 76
+          },
+          {
+            "time": "2026-11-14T19:00",
+            "temp": 19.1,
+            "rainChance": 51
+          },
+          {
+            "time": "2026-11-14T20:00",
+            "temp": 17.7,
+            "rainChance": 35
           }
         ]
       }
     },
     "air": {
       "ok": true,
-      "fetchedAt": "2026-11-13T17:06:10.042Z",
+      "fetchedAt": "2026-11-13T22:48:22.646Z",
       "data": {
-        "aqi": 33,
+        "aqi": 27,
         "band": {
           "label": "Good",
           "tone": "good"
         },
-        "pm25": 3.7,
-        "pm10": 4.2,
-        "uv": 0,
-        "observedAt": "2026-11-14T04:00",
+        "pm25": 3.4,
+        "pm10": 4.9,
+        "uv": 3.05,
+        "observedAt": "2026-11-14T09:00",
         "scale": "US AQI"
       }
     },
     "holidays": {
       "ok": true,
-      "fetchedAt": "2026-11-13T17:06:09.873Z",
+      "fetchedAt": "2026-11-13T22:48:22.535Z",
       "data": {
         "asOf": "2026-11-14",
         "isTodayHoliday": null,
@@ -250,7 +250,7 @@
     },
     "fire": {
       "ok": true,
-      "fetchedAt": "2026-11-13T17:06:10.172Z",
+      "fetchedAt": "2026-11-13T22:48:22.644Z",
       "data": null
     }
   }
