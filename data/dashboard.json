@@ -1,19 +1,19 @@
 {
-  "generatedAt": "2026-11-14T10:49:57.803Z",
+  "generatedAt": "2026-11-14T16:57:18.028Z",
   "houseName": "Home",
   "timezone": "Australia/Sydney",
   "suburb": "SPENCE",
   "sections": {
     "bins": {
       "ok": true,
-      "fetchedAt": "2026-11-14T10:49:57.803Z",
+      "fetchedAt": "2026-11-14T16:56:45.855Z",
       "data": {
         "suburb": "SPENCE",
         "splitSuburb": null,
         "collectionWeek": "A",
         "greenwasteWeek": "Yellow",
         "greenwasteType": "Greenwaste",
-        "asOf": "2026-11-14",
+        "asOf": "2026-11-15",
         "streams": [
           {
             "key": "garbage",
@@ -25,7 +25,7 @@
             "weekday": "Wednesday",
             "scheduledDay": "Wednesday",
             "frequency": "Weekly",
-            "daysUntil": 4
+            "daysUntil": 3
           },
           {
             "key": "green",
@@ -37,7 +37,7 @@
             "weekday": "Wednesday",
             "scheduledDay": "Wednesday",
             "frequency": "Fortnightly",
-            "daysUntil": 4
+            "daysUntil": 3
           },
           {
             "key": "recycling",
@@ -49,14 +49,15 @@
             "weekday": "Wednesday",
             "scheduledDay": "Wednesday",
             "frequency": "Fortnightly",
-            "daysUntil": 11
+            "daysUntil": 10
           }
         ]
       }
     },
     "weather": {
-      "ok": true,
+      "ok": false,
       "fetchedAt": "2026-11-14T10:49:57.349Z",
+      "error": "api.open-meteo.com: fetch failed",
       "data": {
         "now": {
           "temp": 16.1,
@@ -185,36 +186,37 @@
             "rainChance": 22
           }
         ]
-      }
+      },
+      "stale": true
     },
     "air": {
       "ok": true,
-      "fetchedAt": "2026-11-14T10:49:57.553Z",
+      "fetchedAt": "2026-11-14T16:56:45.858Z",
       "data": {
-        "aqi": 34,
+        "aqi": 24,
         "band": {
           "label": "Good",
           "tone": "good"
         },
-        "pm25": 5.7,
-        "pm10": 7,
+        "pm25": 0.2,
+        "pm10": 0.3,
         "uv": 0,
-        "observedAt": "2026-11-14T21:00",
+        "observedAt": "2026-11-15T03:00",
         "scale": "US AQI"
       }
     },
     "holidays": {
       "ok": true,
-      "fetchedAt": "2026-11-14T10:49:57.346Z",
+      "fetchedAt": "2026-11-14T16:56:45.575Z",
       "data": {
-        "asOf": "2026-11-14",
+        "asOf": "2026-11-15",
         "isTodayHoliday": null,
         "next": {
           "date": "2026-12-25",
           "name": "Christmas Day",
           "weekday": "Friday",
           "actOnly": false,
-          "daysUntil": 41
+          "daysUntil": 40
         },
         "upcoming": [
           {
@@ -222,35 +224,35 @@
             "name": "Christmas Day",
             "weekday": "Friday",
             "actOnly": false,
-            "daysUntil": 41
+            "daysUntil": 40
           },
           {
             "date": "2026-12-28",
             "name": "Boxing Day",
             "weekday": "Monday",
             "actOnly": false,
-            "daysUntil": 44
+            "daysUntil": 43
           },
           {
             "date": "2027-01-01",
             "name": "New Year's Day",
             "weekday": "Friday",
             "actOnly": false,
-            "daysUntil": 48
+            "daysUntil": 47
           },
           {
             "date": "2027-01-26",
             "name": "Australia Day",
             "weekday": "Tuesday",
             "actOnly": false,
-            "daysUntil": 73
+            "daysUntil": 72
           }
         ]
       }
     },
     "fire": {
       "ok": true,
-      "fetchedAt": "2026-11-14T10:49:57.691Z",
+      "fetchedAt": "2026-11-14T16:56:45.819Z",
       "data": null
     }
   }
