@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-11-15T20:57:49.429Z",
+  "generatedAt": "2026-11-16T00:55:38.994Z",
   "houseName": "Home",
   "timezone": "Australia/Sydney",
   "suburb": "SPENCE",
   "sections": {
     "bins": {
       "ok": true,
-      "fetchedAt": "2026-11-15T20:57:49.429Z",
+      "fetchedAt": "2026-11-16T00:55:38.994Z",
       "data": {
         "suburb": "SPENCE",
         "splitSuburb": null,
@@ -56,18 +56,18 @@
     },
     "weather": {
       "ok": true,
-      "fetchedAt": "2026-11-15T20:57:48.572Z",
+      "fetchedAt": "2026-11-16T00:55:38.062Z",
       "data": {
         "now": {
-          "temp": 10.8,
-          "feelsLike": 8.2,
-          "humidity": 81,
-          "code": 51,
-          "wind": 12.9,
-          "windDir": 160,
+          "temp": 14.2,
+          "feelsLike": 12.1,
+          "humidity": 61,
+          "code": 2,
+          "wind": 8.4,
+          "windDir": 115,
           "isDay": true,
-          "precipitation": 0.1,
-          "observedAt": "2026-11-16T07:45"
+          "precipitation": 0,
+          "observedAt": "2026-11-16T11:45"
         },
         "today": {
           "date": "2026-11-16",
@@ -77,7 +77,7 @@
           "min": 10.5,
           "rain": 1.1,
           "rainChance": 69,
-          "uv": 8.65,
+          "uv": 7.4,
           "sunrise": "2026-11-16T05:48",
           "sunset": "2026-11-16T19:48",
           "windMax": 16.3
@@ -91,7 +91,7 @@
             "min": 10.5,
             "rain": 1.1,
             "rainChance": 69,
-            "uv": 8.65,
+            "uv": 7.4,
             "sunrise": "2026-11-16T05:48",
             "sunset": "2026-11-16T19:48",
             "windMax": 16.3
@@ -117,33 +117,13 @@
             "min": 9.4,
             "rain": 0,
             "rainChance": 14,
-            "uv": 7.75,
+            "uv": 7.4,
             "sunrise": "2026-11-18T05:47",
             "sunset": "2026-11-18T19:50",
             "windMax": 15.8
           }
         ],
         "hourly": [
-          {
-            "time": "2026-11-16T07:00",
-            "temp": 10.8,
-            "rainChance": 44
-          },
-          {
-            "time": "2026-11-16T08:00",
-            "temp": 10.8,
-            "rainChance": 33
-          },
-          {
-            "time": "2026-11-16T09:00",
-            "temp": 11,
-            "rainChance": 27
-          },
-          {
-            "time": "2026-11-16T10:00",
-            "temp": 11.7,
-            "rainChance": 24
-          },
           {
             "time": "2026-11-16T11:00",
             "temp": 13.7,
@@ -183,29 +163,49 @@
             "time": "2026-11-16T18:00",
             "temp": 16.9,
             "rainChance": 26
+          },
+          {
+            "time": "2026-11-16T19:00",
+            "temp": 15.8,
+            "rainChance": 22
+          },
+          {
+            "time": "2026-11-16T20:00",
+            "temp": 14,
+            "rainChance": 18
+          },
+          {
+            "time": "2026-11-16T21:00",
+            "temp": 12.8,
+            "rainChance": 14
+          },
+          {
+            "time": "2026-11-16T22:00",
+            "temp": 12.1,
+            "rainChance": 11
           }
         ]
       }
     },
     "air": {
       "ok": true,
-      "fetchedAt": "2026-11-15T20:57:49.150Z",
+      "fetchedAt": "2026-11-16T00:55:38.406Z",
       "data": {
         "aqi": 18,
         "band": {
           "label": "Good",
           "tone": "good"
         },
-        "pm25": 1.9,
-        "pm10": 2.6,
-        "uv": 0.2,
-        "observedAt": "2026-11-16T07:00",
+        "pm25": 1.4,
+        "pm10": 2,
+        "uv": 4.2,
+        "observedAt": "2026-11-16T11:00",
         "scale": "US AQI"
       }
     },
     "holidays": {
       "ok": true,
-      "fetchedAt": "2026-11-15T20:57:48.763Z",
+      "fetchedAt": "2026-11-16T00:55:38.193Z",
       "data": {
         "asOf": "2026-11-16",
         "isTodayHoliday": null,
@@ -250,7 +250,7 @@
     },
     "fire": {
       "ok": true,
-      "fetchedAt": "2026-11-15T20:57:49.386Z",
+      "fetchedAt": "2026-11-16T00:55:38.474Z",
       "data": null
     }
   }
