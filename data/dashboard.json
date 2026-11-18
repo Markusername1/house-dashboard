@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-11-17T19:44:04.962Z",
+  "generatedAt": "2026-11-18T02:18:54.919Z",
   "houseName": "Home",
   "timezone": "Australia/Sydney",
   "suburb": "SPENCE",
   "sections": {
     "bins": {
       "ok": true,
-      "fetchedAt": "2026-11-17T19:44:04.962Z",
+      "fetchedAt": "2026-11-18T02:18:25.131Z",
       "data": {
         "suburb": "SPENCE",
         "splitSuburb": null,
@@ -55,8 +55,9 @@
       }
     },
     "weather": {
-      "ok": true,
+      "ok": false,
       "fetchedAt": "2026-11-17T19:44:02.842Z",
+      "error": "api.open-meteo.com: fetch failed",
       "data": {
         "now": {
           "temp": 11,
@@ -185,27 +186,28 @@
             "rainChance": 0
           }
         ]
-      }
+      },
+      "stale": true
     },
     "air": {
       "ok": true,
-      "fetchedAt": "2026-11-17T19:44:03.111Z",
+      "fetchedAt": "2026-11-18T02:18:22.628Z",
       "data": {
-        "aqi": 19,
+        "aqi": 25,
         "band": {
           "label": "Good",
           "tone": "good"
         },
-        "pm25": 3.6,
-        "pm10": 4.5,
-        "uv": 0.05,
-        "observedAt": "2026-11-18T06:00",
+        "pm25": 5.3,
+        "pm10": 6.6,
+        "uv": 10.05,
+        "observedAt": "2026-11-18T13:00",
         "scale": "US AQI"
       }
     },
     "holidays": {
       "ok": true,
-      "fetchedAt": "2026-11-17T19:44:02.988Z",
+      "fetchedAt": "2026-11-18T02:18:22.271Z",
       "data": {
         "asOf": "2026-11-18",
         "isTodayHoliday": null,
@@ -250,7 +252,7 @@
     },
     "fire": {
       "ok": true,
-      "fetchedAt": "2026-11-17T19:44:03.483Z",
+      "fetchedAt": "2026-11-18T02:18:22.437Z",
       "data": null
     }
   }
